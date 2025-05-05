@@ -1,0 +1,193 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --background: 0 0% 100%;
+    --foreground: 222.2 47.4% 11.2%;
+
+    --tldraw-bg: 0 0% 98%;
+    --tldraw-primary: 213.8 93.9% 60.4%;
+    --tldraw-secondary: 240 5.9% 11.8%;
+    --tldraw-hover: 0 0% 96.1%;
+    --tldraw-selected: 213.8 100% 93.9%;
+    --tldraw-border: 0 0% 90.2%;
+    --tldraw-accent: 213.8 93.9% 60.4%;
+    --tldraw-danger: 6.2 93.9% 60.4%;
+    --tldraw-success: 145.7 64.2% 33.5%;
+
+    --muted: 210 40% 96.1%;
+    --muted-foreground: 215.4 16.3% 46.9%;
+
+    --popover: 0 0% 100%;
+    --popover-foreground: 222.2 47.4% 11.2%;
+
+    --card: 0 0% 100%;
+    --card-foreground: 222.2 47.4% 11.2%;
+
+    --border: 214.3 31.8% 91.4%;
+    --input: 214.3 31.8% 91.4%;
+
+    --primary: 213.8 93.9% 60.4%;
+    --primary-foreground: 210 40% 98%;
+
+    --secondary: 210 40% 96.1%;
+    --secondary-foreground: 222.2 47.4% 11.2%;
+
+    --accent: 210 40% 96.1%;
+    --accent-foreground: 222.2 47.4% 11.2%;
+
+    --destructive: 0 100% 50%;
+    --destructive-foreground: 210 40% 98%;
+
+    --ring: 215 20.2% 65.1%;
+
+    --radius: 0.5rem;
+  }
+
+  .dark {
+    --background: 224 71% 4%;
+    --foreground: 213 31% 91%;
+
+    --tldraw-bg: 224 71% 4%;
+    --tldraw-primary: 213.8 93.9% 60.4%;
+    --tldraw-secondary: 213 31% 91%;
+    --tldraw-hover: 224 71% 10%;
+    --tldraw-selected: 213.8 100% 20%;
+    --tldraw-border: 215 28% 17%;
+    --tldraw-accent: 213.8 93.9% 60.4%;
+    --tldraw-danger: 6.2 93.9% 60.4%;
+    --tldraw-success: 145.7 64.2% 33.5%;
+
+    --muted: 223 47% 11%;
+    --muted-foreground: 215.4 16.3% 56.9%;
+
+    --popover: 224 71% 4%;
+    --popover-foreground: 215 20.2% 65.1%;
+
+    --card: 224 71% 4%;
+    --card-foreground: 213 31% 91%;
+
+    --border: 216 34% 17%;
+    --input: 216 34% 17%;
+
+    --primary: 210 40% 98%;
+    --primary-foreground: 222.2 47.4% 1.2%;
+
+    --secondary: 222.2 47.4% 11.2%;
+    --secondary-foreground: 210 40% 98%;
+
+    --accent: 216 34% 17%;
+    --accent-foreground: 210 40% 98%;
+
+    --destructive: 0 63% 31%;
+    --destructive-foreground: 210 40% 98%;
+
+    --ring: 216 34% 17%;
+
+    --radius: 0.5rem;
+  }
+
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply font-sans antialiased bg-tldraw-bg text-tldraw-secondary;
+    overscroll-behavior: none;
+  }
+
+  /* Custom scrollbar styling */
+  ::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+  }
+    
+  ::-webkit-scrollbar-track {
+    background: transparent;
+  }
+    
+  ::-webkit-scrollbar-thumb {
+    background: #d1d5db;
+    border-radius: 4px;
+  }
+    
+  ::-webkit-scrollbar-thumb:hover {
+    background: #9ca3af;
+  }
+    
+  /* Animation for clipboard items */
+  @keyframes fadeIn {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+    
+  .clipboard-item {
+    animation: fadeIn 0.2s ease-out;
+  }
+}
+
+@layer components {
+  .bg-tldraw-bg {
+    background-color: hsl(var(--tldraw-bg));
+  }
+  
+  .bg-tldraw-primary {
+    background-color: hsl(var(--tldraw-primary));
+  }
+  
+  .bg-tldraw-secondary {
+    background-color: hsl(var(--tldraw-secondary));
+  }
+  
+  .bg-tldraw-hover {
+    background-color: hsl(var(--tldraw-hover));
+  }
+  
+  .bg-tldraw-selected {
+    background-color: hsl(var(--tldraw-selected));
+  }
+  
+  .border-tldraw-border {
+    border-color: hsl(var(--tldraw-border));
+  }
+  
+  .text-tldraw-primary {
+    color: hsl(var(--tldraw-primary));
+  }
+  
+  .text-tldraw-secondary {
+    color: hsl(var(--tldraw-secondary));
+  }
+  
+  .border-tldraw-primary {
+    border-color: hsl(var(--tldraw-primary));
+  }
+  
+  .tooltip {
+    position: relative;
+  }
+  
+  .tooltip::after {
+    content: attr(data-tooltip);
+    position: absolute;
+    bottom: 125%;
+    left: 50%;
+    transform: translateX(-50%);
+    padding: 5px 10px;
+    background: hsl(var(--tldraw-secondary));
+    color: white;
+    border-radius: 4px;
+    font-size: 12px;
+    white-space: nowrap;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.2s ease;
+    z-index: 10;
+  }
+  
+  .tooltip:hover::after {
+    opacity: 1;
+  }
+}
